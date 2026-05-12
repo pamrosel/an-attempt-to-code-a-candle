@@ -1,0 +1,185 @@
+:root {
+  --acid-green: #55ffbb;
+}
+
+body {
+  width: 100vw;
+  height: 100vh;
+  font-size: 16px;
+  margin: 0;
+  background-color: #000000;
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+}
+
+.readout {
+  position: fixed;
+  top: 0;
+  margin: 0;
+  padding: 1rem 1.25rem;
+  color: rgb(from var(--acid-green) r g b / 0.85);
+  font-family: inherit;
+  font-size: 0.875rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  line-height: 1.5;
+  z-index: 10;
+}
+
+.readout pre {
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+  white-space: pre;
+}
+
+.readout-toggle {
+  display: block;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  border: none;
+  font: inherit;
+  color: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+  cursor: pointer;
+}
+
+/* Hidden on desktop — only used as the [ todos ] toggle on mobile. */
+.readout-toggle--todos {
+  display: none;
+}
+
+.smoke-cloud {
+  position: fixed;
+  left: 0;
+  top: 0;
+  margin: 0;
+  font-family: inherit;
+  white-space: pre;
+  pointer-events: none;
+  color: rgba(255, 255, 255, 0.9);
+  z-index: 2;
+  will-change: transform, opacity;
+}
+
+.readout--left {
+  left: 0;
+}
+
+.readout--right {
+  right: 0;
+}
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.viewbox {
+  display: flex;
+  width: 350px;
+  height: 450px;
+  background: radial-gradient(
+    circle,
+    rgba(255, 183, 157, 0.27) 0%,
+    rgba(255, 249, 211, 0) 100%
+  );
+  align-items: end;
+}
+
+.candle-container {
+  margin: 0 auto;
+  position: relative;
+  border-radius: 10px;
+  background: linear-gradient(pink, red, rgb(182, 0, 0));
+}
+
+.drip {
+  position: absolute;
+  background: linear-gradient(rgb(255, 141, 206), rgb(255, 141, 206));
+  border-radius: 50% 50% 40% 40%;
+  z-index: 1;
+}
+
+.wax-line {
+  position: absolute;
+  background: #fef7ebbb;
+  background: linear-gradient(
+    to bottom,
+    rgb(254, 205, 228),
+    red,
+    rgb(255, 141, 206)
+  );
+  border-radius: 2px;
+  z-index: 0;
+}
+
+.restart-btn {
+  position: fixed;
+  bottom: 1.75rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  background: transparent;
+  border: 1.5px solid rgb(from var(--acid-green) r g b / 0.5);
+  color: rgb(from var(--acid-green) r g b / 0.85);
+  font-family: inherit;
+  font-size: 2em;
+  line-height: 1;
+  padding: 0.4em 0.5em;
+  border-radius: 999px;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.restart-btn:hover {
+  border-color: var(--acid-green);
+  color: var(--acid-green);
+}
+
+.restart-btn:focus-visible {
+  outline: 2px solid var(--acid-green);
+  outline-offset: 2px;
+}
+
+/* — Mobile ——————————————————————————————————————————————————————
+   Below 768px the side-by-side readouts run into the candle.
+   Right side collapses behind a [ todos ] button; opening it
+   temporarily hides the left readout so todos get the full view. */
+@media (max-width: 768px) {
+  .readout {
+    font-size: 0.8125rem;
+    padding: 0.75rem 1rem;
+  }
+
+  .readout--right {
+    left: 0;
+  }
+
+  .readout--right pre {
+    display: none;
+  }
+
+  .readout-toggle--todos {
+    display: block;
+    position: fixed;
+    right: 0;
+    padding: 0 1rem;
+  }
+
+  body.todos-open .readout--right pre {
+    display: block;
+  }
+
+  body.todos-open .readout--left {
+    display: none;
+  }
+}

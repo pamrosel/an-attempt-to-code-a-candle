@@ -2,12 +2,47 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + Svelte</title>
+    <title>An Attempt to Code a Candle</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div id="app"></div>
-    <script type="module" src="/src/main.js"></script>
+    <div class="readout readout--left">
+      <pre data-readout-left></pre>
+      <button
+        class="readout-toggle readout-toggle--motion"
+        type="button"
+        data-reduce-motion
+        aria-pressed="false"
+      ></button>
+    </div>
+    <div class="readout readout--right">
+      <button
+        class="readout-toggle readout-toggle--todos"
+        type="button"
+        data-todos-toggle
+        aria-expanded="false"
+      ></button>
+      <pre data-readout-right></pre>
+    </div>
+
+    <main>
+      <div class="viewbox">
+        <div class="candle-container"></div>
+      </div>
+    </main>
+
+    <button class="restart-btn" type="button" data-restart aria-label="relight">
+      ↻
+    </button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+    <script src="script.js"></script>
   </body>
 </html>
